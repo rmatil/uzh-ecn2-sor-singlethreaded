@@ -8,7 +8,7 @@ public class Sor {
 	/**
 	 * Accuracy used to compute potentials
 	 */
-	private static final int NUMBER_OF_COMPUTATION_STEPS = 20000;
+	private static final int NUMBER_OF_COMPUTATION_STEPS = 40000;
 	
 	public static void main(String[] args) {
 		Grid grid = new Grid(Sor.GRID_WIDTH, Sor.GRID_HEIGHT);
@@ -22,28 +22,11 @@ public class Sor {
 		top.setResizable(true);
 		top.getContentPane().add(grid);
 		top.setVisible(true);
-		
-		ThreadGroup threadGroup = new ThreadGroup ("field computation");
+
 		
 		// top left corner
-		SorThread thread1 = new SorThread(threadGroup, grid, barrier, Sor.NUMBER_OF_COMPUTATION_STEPS, 1, 599, 1, 599);
+		SorThread thread1 = new SorThread(grid, barrier, Sor.NUMBER_OF_COMPUTATION_STEPS, 1, 599, 1, 599);
 		thread1.start();
-		
-		ElectronFly fly = new ElectronFly(grid);
-		
-		while (true) {
-			if (threadGroup.activeCount() == 0) {
-				System.out.println("start electornFly");
-				fly.startElectronFly();
-			}
-			
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 
 	

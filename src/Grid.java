@@ -14,11 +14,6 @@ public class Grid extends JPanel {
 	public static final int PIXEL_SIZE = 1;
 	public static final int POTENTIAL = 1000000; // potential used on the beginning
 	
-	public static final int GRID_STEP_SIZE = 1;
-	
-	private Integer electronXPos;
-	private Integer electronYPos;
-	
 	public int gridOld[][];
 	public int gridNew[][];
 	
@@ -36,11 +31,6 @@ public class Grid extends JPanel {
 				this.gridNew[i + xPos][j + yPos] = Grid.POTENTIAL;
 			}
 		}
-	}
-	
-	public void setElectronPos(int xPos, int yPos) {
-		this.electronXPos = xPos;
-		this.electronYPos = yPos;
 	}
 	
 	@Override
@@ -78,20 +68,13 @@ public class Grid extends JPanel {
 					g.setColor(Color.BLACK);
 				}
 				
-				
-				if (this.electronXPos != null &&
-						this.electronYPos != null &&
-						this.electronXPos == i &&
-						this.electronYPos == j) {
-					g.setColor(Color.RED);
-				}
-				
 				int x = PIXEL_SIZE * i;
 				int y = PIXEL_SIZE * j;
 				
 				g.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
 			}
 		}
+		
 	}
 	
 	private void initGrid() {

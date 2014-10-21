@@ -13,9 +13,7 @@ public class SorThread extends Thread {
 	
 	private int stepCounter;
 	
-	public SorThread(ThreadGroup tg, Grid grid, Barrier barrier, int nrOfComputationSteps, int xStart, int xEnd, int yStart, int yEnd) {
-		super(tg, "thread");
-
+	public SorThread(Grid grid, Barrier barrier, int nrOfComputationSteps, int xStart, int xEnd, int yStart, int yEnd) {
 		this.grid = grid;
 		this.barrier = barrier;
 		this.nrOfComputationSteps = nrOfComputationSteps;
@@ -45,7 +43,7 @@ public class SorThread extends Thread {
 			// tell waiting barrier that we reached next computation step
 			this.barrier.reached();
 		}
-				
+		
 		return;
 	}
 }
